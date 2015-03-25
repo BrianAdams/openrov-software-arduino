@@ -5,6 +5,7 @@
 #include "Pin.h"
 
 #define LIGHTS_PIN 44
+#define ELIGHTS_PIN 46
 #define CAMERAMOUNT_PIN 11
 #define CALIBRATIONLASERS_PIN 45
 #define PORT_PIN 6
