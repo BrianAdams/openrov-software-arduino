@@ -1,5 +1,5 @@
 #include "AConfig.h"
-#if(HAS_MS5803_14BA)
+#if(HAS_MS5803_14BA | HAS_MS5803_30BA)
 
 #include "Device.h"
 #include "MS5803_14BA.h"
@@ -18,7 +18,7 @@ Rev 1 12 Oct 2013 -- Implements 2nd order temperature compensation
 
 
 
-const int DevAddress = MS5803_14BA_I2C_ADDRESS;  // 7-bit I2C address of the MS5803
+const int DevAddress = MS5803___BA_I2C_ADDRESS;  // 7-bit I2C address of the MS5803
 
 // Here are the commands that can be sent to the 5803
 // Page 6 of the data sheet
@@ -213,7 +213,12 @@ void MS5803_14BA::device_loop(Command command){
 
   Pressure = (float)AdcPressure * Sensitivity / pow(2, 21);
   Pressure = Pressure - Offset;
+  #if(HAS_MS5803_14BA)
   Pressure = Pressure / pow(2, 15);
+  #endif
+  #if(HAS_MS5803_30BA)
+  Pressure = Pressure / pow(2, 13);
+  #endif
   Pressure = Pressure / 10;  // Set output to mbars = hectopascal;
 
   envdata::PRES = Pressure;
@@ -243,6 +248,3 @@ void MS5803_14BA::device_loop(Command command){
 
 
 #endif
-
-
-
