@@ -42,6 +42,11 @@ Settings settings;
   Thrusters thrusters;
 #endif
 
+#if(HAS_STD_2XV2_THRUSTERS)
+  #include "Thrusters2Xv2.h"
+  Thrusters thrusters;
+#endif
+
 #if(HAS_STD_PILOT)
   #include "Pilot.h"
   Pilot pilot;
@@ -73,21 +78,45 @@ Settings settings;
   MPU9150 IMU;
 #endif
 
+#if(HAS_KMPU9150)
+  #define COMPASS_ENABLED 1
+  #define GYRO_ENABLED 1
+  #define ACCELEROMETER_ENABLED 1
+  #include "kriswinerMPU9150.h"
+  #include <Wire.h> //required to force the Arduino IDE to include the library in the path for the I2C code
+  KrisWinerMPU9150 IMU;
+#endif
+
 #if(HAS_MS5803_14BA)
-  #define DEPTH_ENABLED 1
+  #define DEAPTH_ENABLED 1
   #include "MS5803_14BA.h"
   #include <Wire.h> //required to force the Arduino IDE to include the library in the path for the I2C code
   #include <SPI.h> //required to force the Arduino IDE to include the library in the path for the SPI code
-  MS5803_14BA DepthSensor;
+  MS5803_14BA DeapthSensor;
+#endif
+
+#if(HAS_BNO055)
+  #define COMPASS_ENABLED 1
+  #define GYRO_ENABLED 1
+  #define ACCELEROMETER_ENABLED 1
+  #include "AndreSharmonBNO055.h"
+  #include <Wire.h> //required to force the Arduino IDE to include the library in the path for the I2C code
+  AndreSharmonBNO055 IMU;
+#endif
+
+#if(HAS_BNO055_AF)
+  #define COMPASS_ENABLED 1
+  #define GYRO_ENABLED 1
+  #define ACCELEROMETER_ENABLED 1
+  #include "BNO055_AF.h"
+  #include <Wire.h> //required to force the Arduino IDE to include the library in the path for the I2C code
+  BNO055_AF IMU;
 #endif
 
 #if(DEADMANSWITCH_ON)
   #include "DeadManSwitch.h"
   DeadmanSwitch DMS;
 #endif
-
-// include plugins
-#include "PluginConfig.h"
 
 Command cmd;
 

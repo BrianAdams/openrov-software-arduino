@@ -25,17 +25,21 @@
 
 #define HAS_STD_LIGHTS (1)
 #define HAS_STD_CALIBRATIONLASERS (1)
-#define HAS_STD_2X1_THRUSTERS (1)
+#define HAS_STD_2X1_THRUSTERS (0)
 #define HAS_STD_CAMERAMOUNT (1)
 #define HAS_STD_PILOT (1)
-#define DEADMANSWITCH_ON (1)
+#define DEADMANSWITCH_ON (0)
 
 //After Market:
+#define HAS_STD_2XV2_THRUSTERS (1)
 #define HAS_POLOLU_MINIMUV (0)
 #define HAS_MS5803_14BA (1)
 #define MS5803_14BA_I2C_ADDRESS 0x76
-#define HAS_MPU9150 (1)
+#define HAS_MPU9150 (0)
+#define HAS_KMPU9150 (0) //working
 #define MPU9150_EEPROM_START 2
+#define HAS_BNO055 (0)
+#define HAS_BNO055_AF (0)
 
 #if !(HAS_OROV_CONTROLLERBOARD_25) && !(HAS_STD_CAPE)
 #  error "You must select either standard cape or controllerboard25 in the AConfig.h file as they have predefined pin values required by other libraries."
