@@ -73,6 +73,16 @@ Settings settings;
   MPU9150 IMU;
 #endif
 
+#if(HAS_MPU9150_DIRECT)
+  #define COMPASS_ENABLED 1
+  #define GYRO_ENABLED 1
+  #define ACCELEROMETER_ENABLED 1
+  #include "MPU9150_DIRECT.h"
+  #include <Wire.h> //required to force the Arduino IDE to include the library in the path for the I2C code
+
+  MPU9150_DIRECT IMU;
+#endif
+
 #if(HAS_MS5803_14BA)
   #define DEPTH_ENABLED 1
   #include "MS5803_14BA.h"
