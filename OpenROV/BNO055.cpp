@@ -267,7 +267,7 @@ uint8_t readByte(uint8_t address, uint8_t subAddress)
 	Wire.write(subAddress);	                 // Put slave register address in Tx buffer
 //	Wire.endTransmission(I2C_NOSTOP);        // Send the Tx buffer, but send a restart to keep connection alive
 	Wire.endTransmission(false);             // Send the Tx buffer, but send a restart to keep connection alive
-	Wire.requestFrom(address, 1);  // Read one byte from slave register address
+	Wire.requestFrom(address, (int)1);  // Read one byte from slave register address
 	//Wire.requestFrom(address, (size_t) 1);   // Read one byte from slave register address
 	data = Wire.read();                      // Fill Rx buffer with result
 	return data;                             // Return data read from slave register
