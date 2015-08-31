@@ -294,7 +294,11 @@ bool CAdaBNO055::GetRevInfo( TRevisionInfo& revInfoOut )
 	uint8_t a, b;
 
 	// Clear the rev info
-	revInfoOut = {};
+	revInfoOut.accel_rev = 0;
+	revInfoOut.mag_rev = 0;
+	revInfoOut.gyro_rev = 0;
+	revInfoOut.bl_rev = 0;
+	revInfoOut.sw_rev = 0;
 
 	bool ret = true;
 
