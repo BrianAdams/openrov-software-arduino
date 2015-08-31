@@ -282,10 +282,10 @@ private:
 
 	bool m_lastRetcode;
 
-	const unsigned long	k_configToOpDelay_ms	= 1000;
-	const unsigned long	k_opToConfigDelay_ms	= 1000;
-	const unsigned long	k_resetDelay_ms			= 1000;
-	const unsigned long	k_selfTestDelay_ms		= 1000;
+	static const unsigned long	k_configToOpDelay_ms	= 1000;
+	static const unsigned long	k_opToConfigDelay_ms	= 1000;
+	static const unsigned long	k_resetDelay_ms			= 1000;
+	static const unsigned long	k_selfTestDelay_ms		= 1000;
 
 	uint8_t		m_i2cAddress;
 	int32_t		m_sensorId;
