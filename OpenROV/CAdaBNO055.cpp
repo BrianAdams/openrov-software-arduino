@@ -48,6 +48,18 @@ bool CAdaBNO055::Initialize()
 
 	delay( 10 );
 
+	//Check to see if the chip is already in operation mode instead of the default
+	//configuration mode.  If so assume the chip has already been initialized.
+	if (GetOperatingMode() != true)
+	{
+		return false;
+	}
+
+	if (m_operatingMode != OPERATION_MODE_CONFIG)
+	{
+		return true;
+	}
+
 	// Non-idempotent - Uninitializes and puts device in unconfigured default state
 	// Reset the device
 	if( Reset() != true )
