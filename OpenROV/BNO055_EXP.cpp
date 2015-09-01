@@ -10,6 +10,7 @@ namespace
 	bool initalized = false;
 	Timer bno055_sample_timer;
 	Timer report_timer;
+	bool browserPingReceived = false;
 
 	CAdaBNO055 bno;
 
@@ -46,7 +47,7 @@ namespace
 
 void BNO055_EXP::device_setup()
 {
-	InitializeSensor();
+
 
 	// Reset timers
 	bno055_sample_timer.reset();
@@ -55,6 +56,11 @@ void BNO055_EXP::device_setup()
 
 void BNO055_EXP::device_loop( Command command )
 {
+
+	if( command.cmp("ping")){
+		browserPingReceived = true;
+	}
+
 	// 1000 / 21
 	if( bno055_sample_timer.elapsed( 47 ) )
 	{
@@ -63,8 +69,10 @@ void BNO055_EXP::device_loop( Command command )
 			// Attempt every 30 secs
 			if( report_timer.elapsed( 30000 ) )
 			{
-				// Attempt to initialize the chip again
-				device_setup();
+				if (browserPingReceived){
+					// Attempt to initialize the chip again
+					InitializeSensor();
+				}
 			}
 
 			return;
